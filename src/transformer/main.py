@@ -42,7 +42,7 @@ from .utils.rundir import setup_rundir
 wandb_logger: WandbLogger
 
 
-@hydra.main(config_path='configs', config_name='default')
+@hydra.main(config_path='configs', config_name='default', version_base=None)
 def main(cfg: Config) -> None:
     """
     Main training dispatcher.
@@ -91,13 +91,13 @@ def main(cfg: Config) -> None:
 
     callbacks: list[Any] = []
 
-    checkpointer = CustomCheckpointer(
+    checkpoint_callback = CustomCheckpointer(
         period=1,  # checkpointing interval in epochs, but still will save only on validation epoch
         dirpath='checkpoints',
         filename='{epoch}',
     )
     if cfg.experiment.save_checkpoints:
-        callbacks.append(checkpointer)
+        callbacks.append(checkpoint_callback)
 
     log.info(f'[bold white]Overriding cfg.pl settings with derived values:')
     log.info(f' >>> resume_from_checkpoint = {resume_path}')

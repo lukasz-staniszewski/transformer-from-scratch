@@ -13,7 +13,7 @@ class LightningSettings(TrainerConf):
     deterministic: bool = True
 
     # Number of GPUs to train on
-    gpus: int = 1
+    gpus: int = 3
 
     # Number of training epochs
     max_epochs: int = 100

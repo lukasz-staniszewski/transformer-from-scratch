@@ -68,7 +68,7 @@ def register_configs():
     cs.store(name='default', node=DictConfig(Config()))
 
     # Config groups with defaults, YAML files validated by Python structured configs
-    # e.g.: `python -m zzsn2021.main experiment=fashion`
+    # e.g.: `python -m transformer.main experiment=fashion`
     cs.store(group='experiment', name='schema_experiment', node=ExperimentSettings)
     cs.store(group='optim', name='schema_optim', node=OptimSettings)
 

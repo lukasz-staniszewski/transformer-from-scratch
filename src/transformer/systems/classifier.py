@@ -9,9 +9,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from hydra.utils import instantiate
-from pytorch_lightning.loggers.base import LoggerCollection
-from pytorch_lightning.loggers.wandb import WandbLogger
-from pytorch_lightning.metrics import Accuracy
+from pytorch_lightning.loggers import LoggerCollection, LightningLoggerBase, WandbLogger
+from torchmetrics import Accuracy
 from rich import print
 from torch.optim.lr_scheduler import _LRScheduler
 from torch.optim.optimizer import Optimizer
@@ -38,8 +37,8 @@ class ImageClassifier(pl.LightningModule):
         self.criterion = nn.CrossEntropyLoss()
 
         # Metrics
-        self.train_acc = Accuracy()
-        self.val_acc = Accuracy()
+        self.train_acc = Accuracy(task="multiclass", num_classes=cfg.experiment.n_classes)
+        self.val_acc = Accuracy(task="multiclass", num_classes=cfg.experiment.n_classes)
 
     # -----------------------------------------------------------------------------------------------
     # Default PyTorch Lightning hooks

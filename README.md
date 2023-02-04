@@ -51,7 +51,7 @@ Turning off stream to *wandb*::
 ## IV. Upload of checkpoint to *wandb*
 [WANDB.AI](https://wandb.ai) enables the remote storage and sharing of files (i.e. trained models) using [W&B Artifacts](https://docs.wandb.ai/guides/artifacts/api).
 
-Uploading of checkpoints generated checkpointów wygenerowanych w czasie uczenia można wykorzystać skrypt `cli.py`::
+Uploading of checkpoints generated during training process may be performed using `cli.py`::
 
     $ python -m transformer.cli upload RUN_NAME CHECKPOINT_NAME ARTIFACT_NAME
 
