@@ -34,7 +34,7 @@ from pytorch_lightning.loggers import WandbLogger
 from wandb.sdk.wandb_run import Run
 
 from .configs import Config, get_tags, register_configs
-from .systems.transformer import TransformerForX
+from .systems.classifier import ImageClassifier
 from .utils.callbacks import CustomCheckpointer, get_resume_checkpoint
 from .utils.logging import log
 from .utils.rundir import setup_rundir
@@ -72,7 +72,7 @@ def main(cfg: Config) -> None:
     )
 
     # Create main system (system = models + training regime)
-    system = TransformerForX(cfg)
+    system = ImageClassifier(cfg)
     log.info(f'[bold yellow]\\[init] System architecture:')
     log.info(system)
 
